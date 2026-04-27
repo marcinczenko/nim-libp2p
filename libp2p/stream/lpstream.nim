@@ -296,9 +296,7 @@ method close*(
   # itself must implement this - once-only check as well, with their own field
   closeImpl(s)
 
-proc resetStream(
-    s: LPStream
-): Future[void] {.async: (raises: [], raw: true).} =
+proc resetStream(s: LPStream): Future[void] {.async: (raises: [], raw: true).} =
   ## Abort the stream and best-effort notify the remote peer, if supported.
   if s.isClosed:
     trace "Already closed", s
